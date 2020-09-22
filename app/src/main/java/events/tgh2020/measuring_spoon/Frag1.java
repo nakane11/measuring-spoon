@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,19 +27,28 @@ public class Frag1 extends Fragment {
         final Context globalContext = this.getActivity();
         int position = getArguments().getInt("position");
 
-        View view = inflater.inflate(R.layout.frag_layout1, container, false);
+        final View view = inflater.inflate(R.layout.frag_layout1, container, false);
         Button button = view.findViewById(R.id.button1);
-        EditText amount = view.findViewById(R.id.amount1);
 
-        final CircleView circleView=new CircleView(globalContext, true);
+        final CircleView frameView=new CircleView(globalContext,true);
+        final CircleView contentView = new CircleView(globalContext, true);
+
         final FrameLayout frameLayout11 = (FrameLayout) view.findViewById(R.id.fragment_layout11);
-        frameLayout11.addView(circleView);
+        frameLayout11.addView(frameView);
 
         final FrameLayout frameLayout12 = (FrameLayout) view.findViewById(R.id.fragment_layout12);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                frameLayout12.removeAllViews();
-                //CircleView circleView=new CircleView(globalContext);
+                EditText editText = (EditText) view.findViewById(R.id.amount1);
+                if(editText.getText().toString().equals("")){
+                    Toast.makeText(getActivity(), "入力されていません",Toast.LENGTH_LONG).show();
+                }else{
+                    double amount = Double.parseDouble(editText.getText().toString());
+                    frameLayout12.removeAllViews();
+                    contentView.showCircle(amount);
+                    frameLayout12.addView(contentView);
+                }
+
                 //AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(globalContext, R.animator.scale);
                 //set.setTarget(circleView);
                 //set.start();
@@ -47,5 +57,4 @@ public class Frag1 extends Fragment {
 
         return view;
     }
-
 }
