@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">measuring-spoon</string>
+    <string name="tab_text_1">大さじ</string>
+    <string name="tab_text_2">小さじ</string>
+    <string name="hint"><font size="15">半角で入力</font></string>
+    <string name="text_above">杯は</string>
+    <string name="button_text">表示する</string>
+</resources>
