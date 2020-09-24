@@ -18,8 +18,7 @@ public class CircleView extends View {
         size=bool;
     }
 
-    public void showCircle(double a){
-        amount = a;
+    public void showCircle(){
         base = false;
         invalidate();
     }
@@ -43,7 +42,7 @@ public class CircleView extends View {
             canvas.drawCircle(180*density, 180*density,(float) (103*density*ratio), paint);
         }else{
             paint.setColor(Color.WHITE);
-            canvas.drawCircle(180*density, 180*density,(float) (103*density*ratio*amount), paint);
+            canvas.drawCircle(180*density, 180*density,(float) (103*density*ratio), paint);
         }
     }
 }
