@@ -8,14 +8,13 @@ import android.view.View;
 
 public class CircleView extends View {
     Paint paint;
-    private Boolean size;
+    private Boolean small;
     private Boolean base =true;
-    private double amount=1.0;
 
     public CircleView(Context context, boolean bool) {
         super(context);
         paint = new Paint();
-        size=bool;
+        small = bool;
     }
 
     public void showCircle(){
@@ -27,22 +26,21 @@ public class CircleView extends View {
     protected void onDraw(Canvas canvas) {
         float density = getContext().getResources().getDisplayMetrics().density;
 
-        double ratio; //大さじか小さじか
-        if (size){
-            ratio = 1;
+        double size; //trueが小さじ、falseが大さじ
+        if (small){
+            size = 1;
         }else {
-            ratio = 1.442;
+            size = 1.442;
         }
 
         paint.setAntiAlias(true);
         if(base){
             paint.setColor(Color.argb(255, 192, 192, 192));
-            canvas.drawCircle(180*density, 180*density, (float) (110*density*ratio), paint);
+            canvas.drawCircle(180*density, 180*density, (float) (110*density*size), paint);
             paint.setColor(Color.argb(255,153, 153, 153));
-            canvas.drawCircle(180*density, 180*density,(float) (103*density*ratio), paint);
         }else{
             paint.setColor(Color.WHITE);
-            canvas.drawCircle(180*density, 180*density,(float) (103*density*ratio), paint);
         }
+        canvas.drawCircle(180*density, 180*density,(float) (103*density*size), paint);
     }
 }

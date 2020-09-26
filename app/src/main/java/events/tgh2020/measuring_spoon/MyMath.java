@@ -2,15 +2,17 @@ package events.tgh2020.measuring_spoon;
 
 public class MyMath {
 
-    static double parse(String ratio) {
-        if (ratio.contains("/")) {
-            String[] rat = ratio.split("/");
+    //分数を小数に変換
+    static double parse(String str) {
+        if (str.contains("/")) {
+            String[] rat = str.split("/");
             return Double.parseDouble(rat[0])/Double.parseDouble(rat[1]);
         } else {
-            return Double.parseDouble(ratio);
+            return Double.parseDouble(str);
         }
     }
 
+    //上から見た半径の比を計算
     static double ratio(double amount){
         double i;
         if(amount>0.5){

@@ -46,19 +46,24 @@ public class Frag1 extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                //体積を半径に変換
                 String str = editText.getText().toString();
                 boolean run = true;
                 double amount = 0;
                 try{
                     amount = MyMath.parse(str);
-                    if(amount<0) {
+                    if(amount<0 || amount>1) {
                         throw new IndexOutOfBoundsException();
                     }
+                }catch (IndexOutOfBoundsException e) {
+                    Toast.makeText(getActivity(), "0~1の範囲で入力して下さい",Toast.LENGTH_LONG).show();
+                    run = false;
                 }catch (Exception e){
                     Toast.makeText(getActivity(), "無効な値です",Toast.LENGTH_LONG).show();
                     run = false;
                 }
 
+                //アニメーションの表示
                 if(run){
                     editText.setText(format.format(amount));
                     contentView.showCircle();
